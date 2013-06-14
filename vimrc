@@ -60,7 +60,7 @@ map cp <esc>:cp<cr>
 
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=white guibg=white
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Color scheme
@@ -68,12 +68,6 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 colorscheme wombat256mod
-
-" Enable syntax highlighting
-" You need to reload this file for the change to apply
-filetype off
-filetype plugin indent on
-syntax on
 
 " Showing line numbers and length
 set number " show line numbers
@@ -116,12 +110,17 @@ autocmd VimEnter * wincmd p
 map <Leader>b <esc>:tn<CR>
 map <Leader>v <esc>:tp<CR>
 
+" Enable filetype detection, indentation and syntax highlighting
+filetype plugin on
+filetype indent on
+syntax on
+
 " Real programmers don't use TABs but spaces
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
+"autocmd FileType cc setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+"autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+autocmd FileType h setlocal shiftwidth=2 tabstop=2
+autocmd FileType py setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 
 " grepprg
 " set grepprg="grep -R -i --color=auto --include '*.cc,*.hh,*.conf,*.cfg' -n -H $ /dev/null"
@@ -140,3 +139,6 @@ let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,
 " Custom C function colors
 "hi cCustomFunc  gui=bold guifg=yellowgreen
 "hi cCustomClass gui=reverse guifg=#00FF00
+
+" Highlight current line
+:set cursorline
