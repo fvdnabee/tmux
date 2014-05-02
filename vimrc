@@ -24,9 +24,13 @@ let mapleader = ","
 " Bind nohl
 " Removes highlight of your last search
 " ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
+" noremap <C-n> :nohl<CR>
+" vnoremap <C-n> :nohl<CR>
+" inoremap <C-n> :nohl<CR>
+
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+" nnoremap <silent> <C-l> :nohl<CR><C-l>
+nnoremap <silent> _ :nohl<CR>
 
 " Quicksave command
 noremap <C-s> :update<CR>
@@ -100,11 +104,14 @@ set noswapfile
 " Automatically load plugins using pathogen
 call pathogen#infect()
 
-" Start with NERDTred opened
+" Start with NERDTree opened
+" autocmd VimEnter waits until all initialization is finished (plugins are loaded)
 " autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
+" let g:nerdtree_tabs_open_on_console_startup=1
+" Toggle NERDTree accross all tabs:
+map <Leader>; <esc>:NERDTreeTabsToggle<CR>
 " autocmd VimEnter * NERDTreeTabsToggle
-let g:nerdtree_tabs_open_on_console_startup=1
-autocmd VimEnter * wincmd p
 
 " Rebind tag next
 map <Leader>b <esc>:tn<CR>
@@ -121,6 +128,9 @@ autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shift
 "autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 autocmd FileType h setlocal shiftwidth=2 tabstop=2
 autocmd FileType py setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+autocmd BufRead,BufNewFile *.click set filetype=click
+autocmd BufRead,BufNewFile *.conf set filetype=click
+autocmd BufRead,BufNewFile *.cfg set filetype=click
 
 " grepprg
 " set grepprg="grep -R -i --color=auto --include '*.cc,*.hh,*.conf,*.cfg' -n -H $ /dev/null"
@@ -142,3 +152,19 @@ let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,
 
 " Highlight current line
 :set cursorline
+
+" Ignore specific files/directories:
+:set wildignore+=*.o,*.d,.git,.svn,*/doxygen-html/*,*/userlevel/*
+
+" Easygrep configuration:
+let g:EasyGrepCommand=1
+let g:EasyGrepMode=2
+let g:EasyGrepRecursive=1
+let g:EasyGrepIgnoreCase=1
+let g:EasyGrepJumpToMatch=0
+
+" YouCompleteMe
+let g:ycm_extra_conf_globlist = ['~/GIT/COAPClientGateway/*','!~/*']
+
+" Increase number of tabs
+set tabpagemax=30
