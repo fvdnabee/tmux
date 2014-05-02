@@ -16,9 +16,6 @@
 [submodule "bundle/vim-nerdtree-tabs"]
 	path = bundle/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
-[submodule "bundle/easygrep"]
-	path = bundle/easygrep
-	url = https://github.com/vim-scripts/EasyGrep.git
 [submodule "bundle/vim-easygrep"]
 	path = bundle/vim-easygrep
 	url = https://github.com/fvdnabee/vim-easygrep
