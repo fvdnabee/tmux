@@ -122,6 +122,9 @@ filetype plugin on
 filetype indent on
 syntax on
 
+" Set foldingmethod to syntax, note this requires a syntax file for every language in syntax
+set foldmethod=syntax
+
 " Real programmers don't use TABs but spaces
 "autocmd FileType cc setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
