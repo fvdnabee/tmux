@@ -109,6 +109,8 @@ call pathogen#infect()
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
 " let g:nerdtree_tabs_open_on_console_startup=1
+" NERDTree on right side
+let g:NERDTreeWinPos = "right"
 " Toggle NERDTree accross all tabs:
 map <Leader>; <esc>:NERDTreeTabsToggle<CR>
 " autocmd VimEnter * NERDTreeTabsToggle
@@ -130,7 +132,7 @@ set foldmethod=syntax
 autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 "autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 autocmd FileType h setlocal shiftwidth=2 tabstop=2
-autocmd FileType py setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+autocmd FileType py setlocal filetype=python shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 autocmd BufRead,BufNewFile *.click set filetype=click
 autocmd BufRead,BufNewFile *.conf set filetype=click
 autocmd BufRead,BufNewFile *.cfg set filetype=click
@@ -171,3 +173,19 @@ let g:ycm_extra_conf_globlist = ['~/GIT/COAPClientGateway/*','!~/*']
 
 " Increase number of tabs
 set tabpagemax=30
+
+" Hide gvim toolbars:
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=L  "remove left-hand scroll bar
+:set guioptions-=b  "remove horizontal scroll bar
+
+" Resize gvim window via Ctrl F12
+map <C-o> :set lines-=1 lines+=1<CR>
+
+" How to make cut/copy/paste in GVim on Ubuntu work with Ctrl+X,Ctrl+C,Ctrl+V?
+" http://superuser.com/a/189198/219425
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <C-r><C-o>+
