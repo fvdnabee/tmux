@@ -41,6 +41,9 @@ inoremap <C-s> <C-O>:update<CR>
 noremap <Leader>e :quit<CR> " Quit current window
 noremap <Leader>E :qa!<CR> " Quit all windows
 
+" Quick quick+save command
+noremap <Leader>x :x<CR> " Quit and save current window
+
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
 map <c-j> <c-w>j
@@ -51,6 +54,8 @@ map <c-h> <c-w>h
 " easier moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
+" open new tab with <Leader>T
+map <Leader>T <esc>:tabnew<CR>
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -144,7 +149,7 @@ autocmd BufRead,BufNewFile *.cfg set filetype=click
 " let g:clang_use_library = 1
 
 " Easymotion rebind leader
-let g:EasyMotion_leader_key = '.'
+" let g:EasyMotion_leader_key = '\'
 
 " Alternate header definition
 " let g:alternateExtensions_CC = "hh"
