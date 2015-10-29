@@ -1,72 +1,4 @@
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
-
-" Automatically regenrate tag files
-" autocmd BufWritePost *.cc,*.hh,*.c,*.h silent! !/usr/bin/ctags -R 2> /dev/null &
-"set tags=./tags,./TAGS;$HOME " 1. tags, 2. TAGS, 3.… until $HOME
-set tags=tags;/
-" Better copy & paste
-" When you want to paste large blocks of code into vim, press F2 before you
-" paste. At the bottom you should see ``-- INSERT (paste) --``.
-
-set pastetoggle=<F2>
-set clipboard=unnamed
-
-" Mouse and backspace
-set mouse=a " on OSX press ALT and click
-set bs=2 " make backspace behave like normal again
-
-" Rebind <Leader> key
-" I like to have it here becuase it is easier to reach than the default and
-" it is next to ``m`` and ``n`` which I use for navigating between tabs.
-let mapleader = ","
-
-" Bind nohl
-" Removes highlight of your last search
-" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-" noremap <C-n> :nohl<CR>
-" vnoremap <C-n> :nohl<CR>
-" inoremap <C-n> :nohl<CR>
-
-" <Ctrl-l> redraws the screen and removes any search highlighting.
-" nnoremap <silent> <C-l> :nohl<CR><C-l>
-nnoremap <silent> _ :nohl<CR>
-
-" Quicksave command
-noremap <C-s> :update<CR>
-vnoremap <C-s> <C-C>:update<CR>
-inoremap <C-s> <C-O>:update<CR>
-
-" Quick quit command
-noremap <Leader>e :quit<CR> " Quit current window
-noremap <Leader>E :qa!<CR> " Quit all windows
-
-" Quick quick+save command
-noremap <Leader>x :x<CR> " Quit and save current window
-
-" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
-" Every unnecessary keystroke that can be saved is good for your health :)
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-" easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
-" open new tab with <Leader>T
-map <Leader>T <esc>:tabnew<CR>
-
-" easier moving of code blocks
-" Try to go into visual mode (v), thenselect several lines of code here and
-" then press ``>`` several times.
-vnoremap < <gv " better indentation
-vnoremap > >gv " better indentation
-
-" Goto the next/previous error in source code remapping
-map cn <esc>:cn<cr>
-map cp <esc>:cp<cr>
-
+" Colors & whitespace {{{
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=white guibg=white
@@ -77,53 +9,30 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 colorscheme wombat256mod
-
+" }}}
+" UI Layout {{{
 " Showing line numbers and length
-set number " show line numbers
-set tw=79 " width of document (used by gd)
-set nowrap " don't automatically wrap on load
-set fo-=t " don't automatically wrap text when typing
+set cursorline	" Highlight current line
+set number	" show line numbers
+set showmatch	" higlight matching parenthesis
+set tw=79	" width of document (used by gd)
+set nowrap	" don't automatically wrap on load
+set fo-=t	" don't automatically wrap text when typing
+
+set showcmd	" show command in bottom bar
+set wildmenu	" show command-line completion matches just above the command line
+
+" Colour column 80
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
-
-" easier formatting of paragraphs
-vmap Q gq
-nmap Q gqap
-
-" Useful settings
-set history=700
-set undolevels=700
-
-" Make search case insensitive
-set incsearch
-set hlsearch
-set ignorecase
+" }}}
+" Searching {{{
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+set ignorecase		" Make search case insensitive
 set smartcase
-
-" Disable stupid backup and swap files - they trigger too many events
-" for file system watchers
-set nobackup
-set nowritebackup
-set noswapfile
-
-" Automatically load plugins using pathogen
-call pathogen#infect()
-
-" Start with NERDTree opened
-" autocmd VimEnter waits until all initialization is finished (plugins are loaded)
-" autocmd VimEnter * NERDTree
-" autocmd VimEnter * wincmd p
-" let g:nerdtree_tabs_open_on_console_startup=1
-" NERDTree on right side
-let g:NERDTreeWinPos = "right"
-" Toggle NERDTree accross all tabs:
-map <Leader>; <esc>:NERDTreeTabsToggle<CR>
-" autocmd VimEnter * NERDTreeTabsToggle
-
-" Rebind tag next
-map <Leader>b <esc>:tn<CR>
-map <Leader>v <esc>:tp<CR>
-
+" }}}
+" Spaces & Tabs {{{
 " Enable filetype detection, indentation and syntax highlighting
 filetype plugin on
 filetype indent on
@@ -132,53 +41,231 @@ syntax on
 " Set foldingmethod to syntax, note this requires a syntax file for every language in syntax
 set foldmethod=syntax
 
-" Real programmers don't use TABs but spaces
-"autocmd FileType cc setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
-autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
-"autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
-autocmd FileType h setlocal shiftwidth=2 tabstop=2
-autocmd FileType py setlocal filetype=python shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
-autocmd BufRead,BufNewFile *.click set filetype=click
-autocmd BufRead,BufNewFile *.conf set filetype=click
-autocmd BufRead,BufNewFile *.cfg set filetype=click
+nnoremap <space> za	" space open/closes folds
 
-" grepprg
-" set grepprg="grep -R -i --color=auto --include '*.cc,*.hh,*.conf,*.cfg' -n -H $ /dev/null"
+set tabpagemax=30 	" Increase number of tabs
+set modelines=1		" Search the last line of a file for file-specific vimrc modes
 
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv " better indentation
+vnoremap > >gv " better indentation
+" }}}
+" Leader {{{
+" Rebind <Leader> key
+" I like to have it here becuase it is easier to reach than the default and
+" it is next to ``m`` and ``n`` which I use for navigating between tabs.
+let mapleader = ","
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+" open new tab with <Leader>T
+map <Leader>T <esc>:tabnew<CR>
+
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Rebind tag next
+map <Leader>b <esc>:tn<CR>
+map <Leader>v <esc>:tp<CR>
+" }}}
+" Quick save/quit {{{
+" Quicksave command
+noremap <C-s> :update<CR>
+vnoremap <C-s> <C-C>:update<CR>
+inoremap <C-s> <C-O>:update<CR>
+
+" Quick quit command
+noremap <Leader>e :quit<CR>	" Quit current window
+noremap <Leader>E :qa!<CR> 	" Quit all windows
+
+" Quick quick+save command
+noremap <Leader>x :x<CR> 	" Quit and save current window
+" }}}
+" Misc key mappings {{{
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Goto the next/previous error in source code remapping or search match
+map cn <esc>:cn<cr>
+map cp <esc>:cp<cr>
+nmap <silent> <RIGHT> :cnext<CR>
+nmap <silent> <LEFT> :cprev<CR>
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" jk is escape
+inoremap jk <esc>
+
+" easier formatting of paragraphs (for text input)
+vmap Q gq
+nmap Q gqap
+" }}}
+" Backup/swap files {{{
+set backup
+set backupdir=/var/tmp/vim,/tmp
+set directory=/var/tmp/vim,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set writebackup
+
+" " Disable stupid backup and swap files - they trigger too many events
+" " for file system watchers
+" set nobackup
+" set nowritebackup
+" set noswapfile
+" }}}
+" Misc {{{
+set ttyfast	" faster redraw
+" Useful settings
+set history=700
+set undolevels=700
+" Mouse and backspace
+set mouse=a	" enable mouse (on OSX press ALT and click)
+set backspace=2	" make backspace behave like normal again
+" Custom C function colors
+"hi cCustomFunc  gui=bold guifg=yellowgreen
+"hi cCustomClass gui=reverse guifg=#00FF00
+
+" Ignore specific files/directories:
+:set wildignore+=*.o,*.d,.git,.svn,*/doxygen-html/*,*/userlevel/*
+
+" Automatic reloading of .vimrc
+" autocmd! bufwritepost .vimrc source %
+
+" Better copy & paste
+" When you want to paste large blocks of code into vim, press F2 before you
+" paste. At the bottom you should see ``-- INSERT (paste) --``.
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Automatically regenerate tag files
+" autocmd BufWritePost *.cc,*.hh,*.c,*.h silent! !/usr/bin/ctags -R 2> /dev/null &
+"set tags=./tags,./TAGS;$HOME " 1. tags, 2. TAGS, 3.… until $HOME
+set tags=tags;/
+" }}}
+" Launch Config {{{
+" Automatically load plugins using pathogen
+call pathogen#infect()
+" }}}
+" CtrlP {{{
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
+let g:ctrlp_switch_buffer = 0
+" let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\vbuild/|dist/|venv/|target/|\.(o|swp|pyc|egg)$'
+" }}}
+" The Silver Searcher (ag) {{{
+" Urge Vim to use ag for :grep commands
+if executable('ag')
+	" Note we extract the column as well as the file and line number
+	" set grepprg=ag\ --nogroup\ --nocolor\ --column
+	" set grepformat=%f:%l:%c%m
+
+	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+	" ag is fast enough that CtrlP doesn't need to cache
+	let g:ctrlp_use_caching = 0
+
+	" Specify the ack.vim plugin to use ag
+	" The benefit of combining Ag with Ack is that Ack's Quickfix window has useful short cuts
+	let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
+" bind K to Ack word under cursor
+nnoremap K :Ack!<CR>
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" }}}
+" NERDTree {{{
+" Start with NERDTree opened
+" autocmd VimEnter waits until all initialization is finished (plugins are loaded)
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
+" let g:nerdtree_tabs_open_on_console_startup=1
+" NERDTree on right side
+" let g:NERDTreeWinPos = "right"
+" Toggle NERDTree accross all tabs:
+map <Leader>; <esc>:NERDTreeTabsToggle<CR>
+" autocmd VimEnter * NERDTreeTabsToggle
+" }}}
+" AutoGroups {{{
+augroup configgroup
+	autocmd!
+	"autocmd FileType cc setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+	autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+	"autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+	autocmd FileType h setlocal shiftwidth=2 tabstop=2
+
+	autocmd FileType python setlocal foldmethod=indent
+	autocmd FileType python setlocal shiftwidth=4
+	autocmd FileType python setlocal tabstop=4
+	autocmd FileType python setlocal softtabstop=4
+	autocmd FileType python setlocal expandtab 
+	autocmd FileType python setlocal shiftround
+	autocmd FileType python setlocal commentstring=#\ %s
+	autocmd FileType py setlocal filetype=python 
+
+	autocmd FileType ruby setlocal tabstop=2
+	autocmd FileType ruby setlocal shiftwidth=2
+	autocmd FileType ruby setlocal expandtab
+	autocmd FileType ruby setlocal softtabstop=2
+	autocmd FileType ruby setlocal commentstring=#\ %s
+	autocmd FileType ruby setlocal shiftround
+	autocmd FileType rb setlocal filetype=ruby 
+
+	autocmd FileType java setlocal noexpandtab
+	autocmd FileType java setlocal list
+	autocmd FileType java setlocal listchars=tab:+\ ,eol:-
+	autocmd FileType java setlocal formatprg=par\ -w80\ -T4
+
+	autocmd BufEnter *.click set filetype=click
+	autocmd BufEnter *.conf set filetype=click
+	autocmd BufEnter *.cfg set filetype=click
+
+	autocmd BufEnter Makefile setlocal noexpandtab
+
+	autocmd BufEnter *.sh setlocal tabstop=2
+	autocmd BufEnter *.sh setlocal shiftwidth=2
+	autocmd BufEnter *.sh setlocal softtabstop=2
+augroup END
+" }}}
+" Misc plugins {{{
 " Use clang autocomplete
 " let g:clang_use_library = 1
-
-" Easymotion rebind leader
-" let g:EasyMotion_leader_key = '\'
 
 " Alternate header definition
 " let g:alternateExtensions_CC = "hh"
 " let g:alternateExtensions_HH = "cc"
 let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../../include,sfr:./include'
-
-" Custom C function colors
-"hi cCustomFunc  gui=bold guifg=yellowgreen
-"hi cCustomClass gui=reverse guifg=#00FF00
-
-" Highlight current line
-:set cursorline
-
-" Ignore specific files/directories:
-:set wildignore+=*.o,*.d,.git,.svn,*/doxygen-html/*,*/userlevel/*
-
-" Easygrep configuration:
+" }}}
+" Easygrep {{{
 let g:EasyGrepCommand=1
 let g:EasyGrepMode=2
 let g:EasyGrepRecursive=1
 let g:EasyGrepIgnoreCase=1
 let g:EasyGrepJumpToMatch=0
-
-" YouCompleteMe
+" }}}
+" YouCompleteMe {{{
 let g:ycm_extra_conf_globlist = ['~/GIT/COAPClientGateway/*','!~/*']
-
-" Increase number of tabs
-set tabpagemax=30
-
+let g:ycm_server_use_vim_stdout = 0
+let g:ycm_server_log_level = 'debug'
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F6> :YcmDiags<CR>
+nnoremap <F7> :YcmRestartServer<CR>
+" }}}
+" syntastic (mainly for python) {{{
+let g:syntastic_python_flake8_args = "--max-line-length=160"
+let g:syntastic_warning_symbol="⚠"
+let g:syntastic_error_symbol="✗"
+" }}}
+" gvim {{{
 " Hide gvim toolbars:
 :set guioptions-=T  "remove toolbar
 :set guioptions-=r  "remove right-hand scroll bar
@@ -194,3 +281,5 @@ vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
+" }}}
+" vim:foldmethod=marker:foldlevel=0
