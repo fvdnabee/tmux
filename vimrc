@@ -29,8 +29,8 @@ highlight ColorColumn ctermbg=233
 " Searching {{{
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-set ignorecase		" Make search case insensitive
-set smartcase
+set ignorecase 		" case-insensitive search (but also see next option)
+set smartcase		" make search case insensitive when no upper case letters are found in the search pattern
 " }}}
 " Spaces & Tabs {{{
 " Enable filetype detection, indentation and syntax highlighting
@@ -159,6 +159,7 @@ call pathogen#infect()
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
 let g:ctrlp_switch_buffer = 0
 " let g:ctrlp_working_path_mode = 0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = '\vbuild/|dist/|venv/|target/|\.(o|swp|pyc|egg)$'
 " }}}
 " The Silver Searcher (ag) {{{
@@ -169,10 +170,17 @@ if executable('ag')
 	" set grepformat=%f:%l:%c%m
 
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+	" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+	let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+	      \ --ignore .git
+	      \ --ignore .svn
+	      \ --ignore .hg
+	      \ --ignore .DS_Store
+	      \ --ignore "**/*.pyc"
+	      \ -g ""'
 
 	" ag is fast enough that CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
+	" let g:ctrlp_use_caching = 0
 
 	" Specify the ack.vim plugin to use ag
 	" The benefit of combining Ag with Ack is that Ack's Quickfix window has useful short cuts
@@ -264,6 +272,11 @@ nnoremap <F7> :YcmRestartServer<CR>
 let g:syntastic_python_flake8_args = "--max-line-length=160"
 let g:syntastic_warning_symbol="⚠"
 let g:syntastic_error_symbol="✗"
+" }}}
+" vim-go {{{
+let g:go_doc_keywordprg_enabled = 0 " don't overwrite the mapping for the K key
+
+" let g:go_fmt_autosave = 0 " work-around for go fmt losing vim folds, see https://github.com/fatih/vim-go/issues/502
 " }}}
 " gvim {{{
 " Hide gvim toolbars:
