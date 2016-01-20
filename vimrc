@@ -11,13 +11,12 @@ set t_Co=256
 colorscheme wombat256mod
 " }}}
 " UI Layout {{{
-" Showing line numbers and length
 set cursorline	" Highlight current line
-set number	" show line numbers
 set showmatch	" higlight matching parenthesis
 set tw=79	" width of document (used by gd)
 set nowrap	" don't automatically wrap on load
 set fo-=t	" don't automatically wrap text when typing
+set scrolloff=3	" lines of text around cursor
 
 set showcmd	" show command in bottom bar
 set wildmenu	" show command-line completion matches just above the command line
@@ -25,6 +24,27 @@ set wildmenu	" show command-line completion matches just above the command line
 " Colour column 80
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
+
+
+" }}}
+" Relative/absolute line numbers {{{
+" Showing line numbers, the following two lines will always show the absolute
+" line number for the cursor line and the surrounding lines will show the
+" relative line number
+set number	" show line numbers
+set relativenumber " show relative line numbers, easy for moving around with j/k
+
+" function to toggle between abs and rel line numbers
+function! RelativeNumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call RelativeNumberToggle()<cr>
+
 " }}}
 " Searching {{{
 set incsearch           " search as characters are entered
@@ -98,6 +118,10 @@ map cn <esc>:cn<cr>
 map cp <esc>:cp<cr>
 nmap <silent> <RIGHT> :cnext<CR>
 nmap <silent> <LEFT> :cprev<CR>
+
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " highlight last inserted text
 nnoremap gV `[v`]
