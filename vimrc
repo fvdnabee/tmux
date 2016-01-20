@@ -16,7 +16,7 @@ set showmatch	" higlight matching parenthesis
 set tw=79	" width of document (used by gd)
 set nowrap	" don't automatically wrap on load
 set fo-=t	" don't automatically wrap text when typing
-set scrolloff=3	" lines of text around cursor
+set scrolloff=3 " lines of text around cursor
 
 set showcmd	" show command in bottom bar
 set wildmenu	" show command-line completion matches just above the command line
