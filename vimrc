@@ -1,3 +1,26 @@
+" Load Plugins {{{
+" load Vundle:
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage itself.
+Plugin 'gmarik/vundle'
+
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
+Bundle 'fatih/vim-go'
+Bundle 'fvdnabee/a.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+
+" Required, plugins available after.
+call vundle#end()
+
+" }}}
 " Colors & whitespace {{{
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
@@ -174,10 +197,6 @@ set clipboard=unnamed
 " autocmd BufWritePost *.cc,*.hh,*.c,*.h silent! !/usr/bin/ctags -R 2> /dev/null &
 "set tags=./tags,./TAGS;$HOME " 1. tags, 2. TAGS, 3.… until $HOME
 set tags=tags;/
-" }}}
-" Launch Config {{{
-" Automatically load plugins using pathogen
-call pathogen#infect()
 " }}}
 " CtrlP {{{
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
