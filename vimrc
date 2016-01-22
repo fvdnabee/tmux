@@ -18,22 +18,42 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 " Tagbar, class outline viewer:
 Bundle 'majutsushi/tagbar'
+" wombat256mod colour scheme for vim:
+Bundle 'vim-scripts/wombat256.vim'
+" Solarized colour scheme for vim:
+" Bundle 'altercation/vim-colors-solarized'
+" Base16 colour scheme for vim:
+" Bundle 'chriskempson/base16-vim'
 
 " Required, plugins available after.
 call vundle#end()
 
 " }}}
-" Colors & whitespace {{{
+" Whitespace, color and fonts {{{
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=white guibg=white
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-" Color scheme
+" Color schemes
+" 1) wombat256mod
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 colorscheme wombat256mod
+" 2) solarized:
+" let g:solarized_termcolors=256
+"set t_Co=256
+"set background=dark
+"colorscheme solarized
+" 3) base16:
+" let base16colorspace=256
+" set background=dark
+" colorscheme base16-colors
+
+" Font for gvim:
+set guifont=Monospace\ 9
+
 " }}}
 " UI Layout {{{
 set cursorline	" Highlight current line
@@ -49,7 +69,6 @@ set wildmenu	" show command-line completion matches just above the command line
 " Colour column 80
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
-
 
 " }}}
 " Relative/absolute line numbers {{{
