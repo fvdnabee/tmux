@@ -16,6 +16,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+" Tagbar, class outline viewer:
+Bundle 'majutsushi/tagbar'
 
 " Required, plugins available after.
 call vundle#end()
@@ -242,8 +244,9 @@ nnoremap K :Ack!<CR>
 " let g:nerdtree_tabs_open_on_console_startup=1
 " NERDTree on right side
 " let g:NERDTreeWinPos = "right"
+
 " Toggle NERDTree accross all tabs:
-map <Leader>; <esc>:NERDTreeTabsToggle<CR>
+nmap <F3> :NERDTreeTabsToggle<CR>
 " autocmd VimEnter * NERDTreeTabsToggle
 " }}}
 " AutoGroups {{{
@@ -295,6 +298,9 @@ augroup END
 " let g:alternateExtensions_CC = "hh"
 " let g:alternateExtensions_HH = "cc"
 let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../../include,sfr:./include'
+
+" Tagbar
+nmap <F4> :TagbarToggle<CR>
 " }}}
 " Easygrep {{{
 let g:EasyGrepCommand=1
@@ -309,7 +315,6 @@ let g:ycm_server_use_vim_stdout = 0
 let g:ycm_server_log_level = 'debug'
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F6> :YcmDiags<CR>
-nnoremap <F7> :YcmRestartServer<CR>
 " }}}
 " syntastic (mainly for python) {{{
 let g:syntastic_python_flake8_args = "--max-line-length=160"
