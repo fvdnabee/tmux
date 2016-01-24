@@ -16,8 +16,15 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+" vim airline, note that you will need a patched powerline font for this, see
+" http://vi.stackexchange.com/a/3363
+Plugin 'vim-airline/vim-airline'
 " Tagbar, class outline viewer:
 Bundle 'majutsushi/tagbar'
+" git integration in vim:
+Bundle 'tpope/vim-fugitive'
+
+" themes:
 " wombat256mod colour scheme for vim:
 Bundle 'vim-scripts/wombat256.vim'
 " Solarized colour scheme for vim:
@@ -52,7 +59,7 @@ colorscheme wombat256mod
 " colorscheme base16-colors
 
 " Font for gvim:
-set guifont=Monospace\ 9
+set guifont=DejaVu\ Mono\ 10
 
 " }}}
 " UI Layout {{{
@@ -123,8 +130,13 @@ vnoremap > >gv " better indentation
 let mapleader = ","
 
 " easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
+"map <Leader>n <esc>:tabprevious<CR>
+"map <Leader>m <esc>:tabnext<CR>
+
+" Easier navigation between buffers:
+map <Leader>m :bn<cr>
+map <Leader>n :bp<cr>
+map <Leader>d :bd<cr>
 
 " open new tab with <Leader>T
 map <Leader>T <esc>:tabnew<CR>
@@ -220,9 +232,12 @@ set clipboard=unnamed
 set tags=tags;/
 " }}}
 " CtrlP {{{
+nmap <C-l> :CtrlPBuffer<CR>
+nmap <C-m> :CtrlPMRU<CR>
+
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
 let g:ctrlp_switch_buffer = 0
-" let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_working_path_mode = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = '\vbuild/|dist/|venv/|target/|\.(o|swp|pyc|egg)$'
 " }}}
@@ -353,7 +368,7 @@ let g:go_doc_keywordprg_enabled = 0 " don't overwrite the mapping for the K key
 :set guioptions-=b  "remove horizontal scroll bar
 
 " Resize gvim window via Ctrl F12
-map <C-o> :set lines-=1 lines+=1<CR>
+" map <C-o> :set lines-=1 lines+=1<CR>
 
 " How to make cut/copy/paste in GVim on Ubuntu work with Ctrl+X,Ctrl+C,Ctrl+V?
 " http://superuser.com/a/189198/219425
@@ -361,5 +376,17 @@ vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
+" }}}
+" vim-airline {{{
+" always show vim-airline:
+set laststatus=2
+" automatically populate the g:airline_symbols dictionary with the proper font glyphs for various symbols
+let g:airline_powerline_fonts = 1
+" Automatically displays all buffers when there's only one tab open.
+let g:airline#extensions#tabline#enabled = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
 " }}}
 " vim:foldmethod=marker:foldlevel=0
