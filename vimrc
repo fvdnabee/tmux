@@ -73,6 +73,7 @@ set scrolloff=3 " lines of text around cursor
 set showcmd	" show command in bottom bar
 set wildmenu	" show command-line completion matches just above the command line
 
+set hidden 	" don't ask for confirmation for hidden buffers
 " Colour column 80
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
@@ -232,7 +233,7 @@ set clipboard=unnamed
 set tags=tags;/
 " }}}
 " CtrlP {{{
-nmap <C-l> :CtrlPBuffer<CR>
+" nmap <C-;> :CtrlPBuffer<CR>
 nmap <C-m> :CtrlPMRU<CR>
 
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
