@@ -23,6 +23,8 @@ Plugin 'vim-airline/vim-airline'
 Bundle 'majutsushi/tagbar'
 " git integration in vim:
 Bundle 'tpope/vim-fugitive'
+" better JSON syntax highlighting:
+Plugin 'elzr/vim-json'
 
 " themes:
 " wombat256mod colour scheme for vim:
@@ -59,7 +61,7 @@ colorscheme wombat256mod
 " colorscheme base16-colors
 
 " Font for gvim:
-set guifont=DejaVu\ Mono\ 10
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 " }}}
 " UI Layout {{{
@@ -138,6 +140,7 @@ let mapleader = ","
 map <Leader>m :bn<cr>
 map <Leader>n :bp<cr>
 map <Leader>d :bd<cr>
+nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " open new tab with <Leader>T
 map <Leader>T <esc>:tabnew<CR>
@@ -233,7 +236,7 @@ set clipboard=unnamed
 set tags=tags;/
 " }}}
 " CtrlP {{{
-" nmap <C-;> :CtrlPBuffer<CR>
+nmap <C-\> :CtrlPBuffer<CR>
 nmap <C-m> :CtrlPMRU<CR>
 
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
@@ -348,8 +351,8 @@ let g:EasyGrepJumpToMatch=0
 let g:ycm_extra_conf_globlist = ['~/GIT/COAPClientGateway/*','!~/*']
 let g:ycm_server_use_vim_stdout = 0
 let g:ycm_server_log_level = 'debug'
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-nnoremap <F6> :YcmDiags<CR>
+nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F7> :YcmDiags<CR>
 " }}}
 " syntastic (mainly for python) {{{
 let g:syntastic_python_flake8_args = "--max-line-length=160"
