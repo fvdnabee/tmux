@@ -47,25 +47,19 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Set term so that we have 256 colors available in zsh and tmux (check via 'tput colors')
 # Don't set term here, tmux will set its own default-terminal in the tmux.conf file
-#export TERM=screen-256color
+#export TERM="screen-256color"
 #export TERM="screen-256color-bce"
 #export TERM="xterm-256color"
 
 # tmux plugin conf:
-ZSH_TMUX_AUTOSTART=true
-# Only autostart once. If set to false, tmux will attempt to
-# autostart every time your zsh configs are reloaded.
-#ZSH_TMUX_AUTOSTART_ONCE=true
-# Automatically connect to a previous session if it exists
-ZSH_TMUX_AUTOCONNECT=true
-# Automatically close the terminal when tmux exits
-ZSH_TMUX_AUTOQUIT=false
+ZSH_TMUX_FIXTERM_WITH_256COLOR=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux cp)
+#set -g default-terminal "screen-256color"
+plugins=(git tmux cp vi-mode)
 
 # User configuration
 if [ -d "$HOME/bin" ] ; then
@@ -73,7 +67,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 
-export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH="/bin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 
 # set PATH to include msp430 gcc bin files
 export PATH=/usr/local/msp430/bin:$PATH
@@ -88,6 +82,9 @@ export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/go_work
 export PATH=$PATH:$GOPATH/bin
 
+# load oh my zsh
+source $ZSH/oh-my-zsh.sh
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -95,7 +92,7 @@ export PATH=$PATH:$GOPATH/bin
 
 # Preferred editor for local and remote sessions
 #if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+export EDITOR='vim'
 #else
 #  export EDITOR='mvim'
 #fi
@@ -114,12 +111,16 @@ export PATH=$PATH:$GOPATH/bin
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias grep='grep --color=auto'
+alias fgrep='fgrep --ignore-case -I -n --color=auto'
+alias egrep='egrep --color=auto'
 
 # pigz compress directory alias
-source ~/scripts/pigz_compress_dir.sh
+#source ~/scripts/pigz_compress_dir.zsh
 
 # alias tmux to start in 256 colors mode:
 # alias tmux="TERM=xterm-256color tmux"
+# alias tmux=tmux -2
 
 # Disable flow control
 stty -ixon
@@ -144,9 +145,7 @@ export KEYTIMEOUT=1
 #     RPS2=$RPS1
 #     zle reset-prompt
 # }
-# 
+#
 # zle -N zle-line-init
 # zle -N zle-keymap-select
 
-# load oh my zsh
-source $ZSH/oh-my-zsh.sh
