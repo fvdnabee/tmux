@@ -25,6 +25,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-fugitive'
 " better JSON syntax highlighting:
 Plugin 'elzr/vim-json'
+" save vim sessions:
+Plugin 'tpope/vim-obsession'
 
 " themes:
 " wombat256mod colour scheme for vim:
@@ -358,6 +360,7 @@ nnoremap <F7> :YcmDiags<CR>
 let g:syntastic_python_flake8_args = "--max-line-length=160"
 let g:syntastic_warning_symbol="⚠"
 let g:syntastic_error_symbol="✗"
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 " }}}
 " vim-go {{{
 let g:go_doc_keywordprg_enabled = 0 " don't overwrite the mapping for the K key
