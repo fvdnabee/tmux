@@ -139,6 +139,9 @@ bindkey '^R' history-incremental-search-backward
 # 0.1s timeout to get to vim normal mode
 export KEYTIMEOUT=1
 
+# disable sharing history between zshs:
+setopt nosharehistory
+
 # show vim status  http://zshwiki.org/home/examples/zlewidgets
 # function zle-line-init zle-keymap-select {
 #     RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
