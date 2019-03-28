@@ -398,7 +398,7 @@ let g:syntastic_python_pylint_post_args = "--max-line-length=160"
 let g:syntastic_python_flake8_args = "--max-line-length=160"
 let g:syntastic_warning_symbol="⚠"
 let g:syntastic_error_symbol="✗"
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+" let g:syntastic_python_python_exec = '/usr/bin/python3'
 " Disable all style warnings
 let g:syntastic_quiet_messages = {"type": "style"}
 " }}}
