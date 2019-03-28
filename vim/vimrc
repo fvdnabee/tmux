@@ -1,44 +1,48 @@
 " Load Plugins {{{
-" load Vundle:
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" Let Vundle manage itself.
-Plugin 'gmarik/vundle'
+" Make sure you use single quotes
 
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'fatih/vim-go'
-Bundle 'fvdnabee/a.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+Plug 'Valloric/YouCompleteMe'
+" You should install flake8 or pylint for syntastic
+Plug 'scrooloose/syntastic'
+Plug 'fatih/vim-go'
+Plug 'fvdnabee/a.vim'
+Plug 'mileszs/ack.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'dkprice/vim-easygrep'
 " vim airline, note that you will need a patched powerline font for this, see
 " http://vi.stackexchange.com/a/3363
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Tagbar, class outline viewer:
-Bundle 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " git integration in vim:
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " better JSON syntax highlighting:
-Plugin 'elzr/vim-json'
+Plug 'elzr/vim-json'
 " save vim sessions:
-Plugin 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
+Plug 'vim-python/python-syntax'
+Plug 'tell-k/vim-autopep8'
 
 " themes:
 " wombat256mod colour scheme for vim:
-Bundle 'vim-scripts/wombat256.vim'
+Plug 'vim-scripts/wombat256.vim'
 " Solarized colour scheme for vim:
-" Bundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " Base16 colour scheme for vim:
-" Bundle 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+" Gruvbox
+Plug 'morhetz/gruvbox'
 
-" Required, plugins available after.
-call vundle#end()
-
+" Initialize plugin system
+call plug#end()
 " }}}
 " Whitespace, color and fonts {{{
 " Show whitespace
@@ -50,17 +54,23 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " 1) wombat256mod
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
-set t_Co=256
-colorscheme wombat256mod
+" set t_Co=256
+" colorscheme wombat256mod
 " 2) solarized:
 " let g:solarized_termcolors=256
-"set t_Co=256
-"set background=dark
-"colorscheme solarized
+" set t_Co=256
+" set background=dark
+" colorscheme solarized
 " 3) base16:
 " let base16colorspace=256
 " set background=dark
 " colorscheme base16-colors
+" 4) gruvbox:
+set termguicolors
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark='high'
+set background=dark    " Setting dark mode
+colorscheme gruvbox
 
 " Font for gvim:
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
@@ -141,7 +151,8 @@ let mapleader = ","
 " Easier navigation between buffers:
 map <Leader>m :bn<cr>
 map <Leader>n :bp<cr>
-map <Leader>d :bd<cr>
+"map <Leader>d :bd<cr>
+map <Leader>d :bp\|bd #<cr>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " open new tab with <Leader>T
@@ -195,19 +206,6 @@ inoremap jk <esc>
 vmap Q gq
 nmap Q gqap
 " }}}
-" Backup/swap files {{{
-set backup
-set backupdir=/var/tmp/vim,/tmp
-set directory=/var/tmp/vim,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set writebackup
-
-" " Disable stupid backup and swap files - they trigger too many events
-" " for file system watchers
-" set nobackup
-" set nowritebackup
-" set noswapfile
-" }}}
 " Misc {{{
 set ttyfast	" faster redraw
 " Useful settings
@@ -245,7 +243,9 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
 let g:ctrlp_switch_buffer = 0
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_custom_ignore = '\vbuild/|dist/|venv/|target/|\.(o|swp|pyc|egg)$'
+" note ctrlp_custom_ignore does not work if you use a custom user command (like
+" ag), see ctrlp_user_command in next section on how to ignore files with ah
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|venv|env)|(\.(swp|ico|git|svn|pyc|egg))$'
 " }}}
 " The Silver Searcher (ag) {{{
 " Urge Vim to use ag for :grep commands
@@ -262,6 +262,8 @@ if executable('ag')
 	      \ --ignore .hg
 	      \ --ignore .DS_Store
 	      \ --ignore "**/*.pyc"
+	      \ --ignore env
+	      \ --ignore venv
 	      \ -g ""'
 
 	" ag is fast enough that CtrlP doesn't need to cache
@@ -301,10 +303,21 @@ augroup configgroup
 	autocmd FileType python setlocal shiftwidth=4
 	autocmd FileType python setlocal tabstop=4
 	autocmd FileType python setlocal softtabstop=4
-	autocmd FileType python setlocal expandtab 
+	autocmd FileType python setlocal expandtab
 	autocmd FileType python setlocal shiftround
 	autocmd FileType python setlocal commentstring=#\ %s
-	autocmd FileType py setlocal filetype=python 
+	autocmd FileType python setlocal colorcolumn=160
+	"autocmd FileType python setlocal equalprg=/usr/lib/python3.7/Tools/scripts/reindent.py
+	autocmd FileType py setlocal filetype=python
+
+	autocmd FileType html setlocal foldmethod=marker
+	autocmd FileType html setlocal foldmarker={,}
+	autocmd Filetype html setlocal tabstop=4
+	autocmd FileType css setlocal foldmethod=syntax
+	autocmd Filetype css setlocal tabstop=4
+	autocmd FileType javascript setlocal foldmethod=marker
+	autocmd FileType javascript setlocal foldmarker={,}
+	autocmd Filetype javascript setlocal shiftwidth=4 tabstop=4 softtabstop=0
 
 	autocmd FileType ruby setlocal tabstop=2
 	autocmd FileType ruby setlocal shiftwidth=2
@@ -319,6 +332,10 @@ augroup configgroup
 	autocmd FileType java setlocal listchars=tab:+\ ,eol:-
 	autocmd FileType java setlocal formatprg=par\ -w80\ -T4
 
+	autocmd FileType matlab setlocal tabstop=4
+	autocmd FileType matlab setlocal expandtab
+	autocmd FileType matlab setlocal shiftwidth=4
+
 	autocmd BufEnter *.click set filetype=click
 	autocmd BufEnter *.conf set filetype=click
 	autocmd BufEnter *.cfg set filetype=click
@@ -328,6 +345,9 @@ augroup configgroup
 	autocmd BufEnter *.sh setlocal tabstop=2
 	autocmd BufEnter *.sh setlocal shiftwidth=2
 	autocmd BufEnter *.sh setlocal softtabstop=2
+
+	" add yaml stuffs
+	autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 " }}}
 " Misc plugins {{{
@@ -353,14 +373,34 @@ let g:EasyGrepJumpToMatch=0
 let g:ycm_extra_conf_globlist = ['~/GIT/COAPClientGateway/*','!~/*']
 let g:ycm_server_use_vim_stdout = 0
 let g:ycm_server_log_level = 'debug'
+" let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F7> :YcmDiags<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>h :YcmCompleter GoToReferences<CR>
+nnoremap <leader>j :YcmCompleter GetType<CR>
+nnoremap <leader>k :YcmCompleter GetDoc<CR>
+
+" }}}
+" python-syntax {{{
+let g:python_highlight_all = 1
 " }}}
 " syntastic (mainly for python) {{{
+" Settings from https://github.com/vim-syntastic/syntastic/#settings
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" Other settings:
+let g:syntastic_python_checkers = ['pylint', 'flake8'] " use both pylint and flake8
+let g:syntastic_python_pylint_post_args = "--max-line-length=160"
 let g:syntastic_python_flake8_args = "--max-line-length=160"
 let g:syntastic_warning_symbol="⚠"
 let g:syntastic_error_symbol="✗"
 let g:syntastic_python_python_exec = '/usr/bin/python3'
+" Disable all style warnings
+let g:syntastic_quiet_messages = {"type": "style"}
 " }}}
 " vim-go {{{
 let g:go_doc_keywordprg_enabled = 0 " don't overwrite the mapping for the K key
@@ -396,4 +436,15 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 " }}}
+" Automatically set screen title
+" http://vim.wikia.com/wiki/Automatically_set_screen_title
+" let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+" if &term == "screen"
+"   set t_ts=^[k
+"   set t_fs=^[\
+" endif
+" if &term == "screen" || &term == "xterm"
+"   set title
+" endif
+set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
 " vim:foldmethod=marker:foldlevel=0
