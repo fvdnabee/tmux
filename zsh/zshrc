@@ -1,17 +1,54 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/fvdabeele/.oh-my-zsh
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=100000
+setopt appendhistory autocd beep extendedglob nomatch
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/fvdnabee/.zshrc'
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+#
+
+# Start of oh-my-zsh zshrc example:
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+ZSH=/usr/share/oh-my-zsh
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#
+# ZSH_THEME="robbyrussell"
+# https://github.com/caiogondim/bullet-train.zsh
+#
+# AUR: https://aur.archlinux.org/packages/bullet-train-oh-my-zsh-theme-git/
+# ZSH_THEME="bullet-train"
+#
+# https://github.com/bhilburn/powerlevel9k
+# sudo pacman -S zsh-theme-powerlevel9k
+# with https://github.com/ryanoasis/nerd-fonts
+POWERLEVEL9K_MODE='nerdfont-complete'
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
@@ -35,55 +72,33 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Set term so that we have 256 colors available in zsh and tmux (check via 'tput colors')
-# Don't set term here, tmux will set its own default-terminal in the tmux.conf file
-#export TERM="screen-256color"
-#export TERM="screen-256color-bce"
-#export TERM="xterm-256color"
-
-# tmux plugin conf:
-ZSH_TMUX_FIXTERM_WITH_256COLOR=true
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#set -g default-terminal "screen-256color"
-plugins=(git tmux cp vi-mode)
+plugins=(
+  git
+  cp
+  virtualenv
+  common-aliases
+  # vi-mode
+)
 
 # User configuration
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-
-export PATH="/bin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-
-# set PATH to include msp430 gcc bin files
-export PATH=/usr/local/msp430/bin:$PATH
-
-# add custom scripts to path
-export PATH=$PATH:/home/fvdabeele/scripts/on_path
-
-# Go lang
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin
-
-export GOPATH=$HOME/go_work
-export PATH=$PATH:$GOPATH/bin
-
-# load oh my zsh
-source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -91,17 +106,18 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-#if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
-#else
-#  export EDITOR='mvim'
-#fi
+# This does not appear to work with running sudoedit locally
+# if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+# else
+  # export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -115,40 +131,28 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --ignore-case -I -n --color=auto'
 alias egrep='egrep --color=auto'
 
-# pigz compress directory alias
-#source ~/scripts/pigz_compress_dir.zsh
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
 
-# alias tmux to start in 256 colors mode:
-# alias tmux="TERM=xterm-256color tmux"
-# alias tmux=tmux -2
+source $ZSH/oh-my-zsh.sh
+# End of oh-my-zsh zshrc example:
 
 # Disable flow control
 stty -ixon
 
-# Larger history:
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-# Use vim mode
-# bindkey -v
-
 # Enable recursive search on Ctrl-R
 bindkey '^R' history-incremental-search-backward
 
-# 0.1s timeout to get to vim normal mode
-export KEYTIMEOUT=1
+# Keep track of directory in new tab
+# https://unix.stackexchange.com/questions/93476/gnome-terminal-keep-track-of-directory-in-new-tab
+. /etc/profile.d/vte.sh
 
 # disable sharing history between zshs:
 setopt nosharehistory
 
-# show vim status  http://zshwiki.org/home/examples/zlewidgets
-# function zle-line-init zle-keymap-select {
-#     RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-#     RPS2=$RPS1
-#     zle reset-prompt
-# }
-#
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-
+# Enable Home/End and Delete key
+# bindkey "\033[1~" beginning-of-line
+# bindkey "\033[4~" end-of-line
+# bindkey "\033[3~" delete-char
