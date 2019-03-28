@@ -400,7 +400,7 @@ let g:syntastic_warning_symbol="⚠"
 let g:syntastic_error_symbol="✗"
 " let g:syntastic_python_python_exec = '/usr/bin/python3'
 " Disable all style warnings
-let g:syntastic_quiet_messages = {"type": "style"}
+" let g:syntastic_quiet_messages = {"type": "style"}
 " }}}
 " vim-go {{{
 let g:go_doc_keywordprg_enabled = 0 " don't overwrite the mapping for the K key
