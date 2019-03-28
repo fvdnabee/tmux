@@ -1,6 +1,7 @@
 [user]
 	email = florisvda@gmail.com
 	name = Floris Van den Abeele
+	signingkey = 82918C1B6B97D2CCB3296FA3591E5C96546192AB
 [core]
 	editor = vim
 	excludesfile = /home/fvdnabee/.gitignore
