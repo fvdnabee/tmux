@@ -1,0 +1,19 @@
+[user]
+	email = florisvda@gmail.com
+	name = Floris Van den Abeele
+[core]
+	editor = vim
+	excludesfile = /home/fvdnabee/.gitignore
+[color]
+	ui = auto
+	#ui = true
+[color "diff"]
+	meta = white black bold
+[alias]
+	st = status
+	stuno = status -uno
+	stu = status -uno
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	com = commit
+	br = branch
+	co = checkout
