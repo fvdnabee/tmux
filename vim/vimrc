@@ -148,6 +148,10 @@ let mapleader = ","
 "map <Leader>n <esc>:tabprevious<CR>
 "map <Leader>m <esc>:tabnext<CR>
 
+" splits like in tmux (but with different leader):
+map <Leader>%  :vsplit<cr>
+map <Leader>"  :split<cr>
+
 " Easier navigation between buffers:
 map <Leader>m :bn<cr>
 map <Leader>n :bp<cr>
