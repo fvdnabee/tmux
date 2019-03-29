@@ -155,8 +155,10 @@ map <Leader>"  :split<cr>
 " Easier navigation between buffers:
 map <Leader>m :bn<cr>
 map <Leader>n :bp<cr>
-"map <Leader>d :bd<cr>
-map <Leader>d :bp\|bd #<cr>
+map <Leader>d :bd<cr>
+" map <Leader>d :bp\|bd #<cr> " Keep window open, only close buffer
+map <Leader>w :close<cr>
+
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " open new tab with <Leader>T
