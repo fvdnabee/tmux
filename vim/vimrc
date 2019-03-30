@@ -245,8 +245,8 @@ set tags=tags;/
 " }}}
 " CtrlP {{{
 nmap <C-\> :CtrlPBuffer<CR>
- " don't use ctrl-m as this map to <CR> in terminal
-nmap <C-o> :CtrlPMRU<CR>
+ " <C-_> is ctrl forward slash
+nmap <C-_> :CtrlPMRU<CR>
 
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
 let g:ctrlp_switch_buffer = 0
