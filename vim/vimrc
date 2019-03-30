@@ -8,7 +8,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Valloric/YouCompleteMe'
 " You should install flake8 or pylint for syntastic
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
 Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
@@ -21,7 +22,7 @@ Plug 'dkprice/vim-easygrep'
 " http://vi.stackexchange.com/a/3363
 Plug 'vim-airline/vim-airline'
 " Tagbar, class outline viewer:
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 " git integration in vim:
 Plug 'tpope/vim-fugitive'
 " better JSON syntax highlighting:
@@ -66,10 +67,11 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " set background=dark
 " colorscheme base16-colors
 " 4) gruvbox:
-set termguicolors
+" set termguicolors
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark='high'
 set background=dark    " Setting dark mode
+let g:gruvbox_guisp_fallback = "bg" " Fix highlighting for SpellBad, see https://github.com/morhetz/gruvbox/issues/175
 colorscheme gruvbox
 
 " Font for gvim:
@@ -193,10 +195,10 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " Goto the next/previous error in source code remapping or search match
-map cn <esc>:cn<cr>
-map cp <esc>:cp<cr>
-nmap <silent> <RIGHT> :cnext<CR>
-nmap <silent> <LEFT> :cprev<CR>
+" map cn <esc>:cn<cr>
+" map cp <esc>:cp<cr>
+" nmap <silent> <RIGHT> :cnext<CR>
+" nmap <silent> <LEFT> :cprev<CR>
 
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
@@ -243,7 +245,8 @@ set tags=tags;/
 " }}}
 " CtrlP {{{
 nmap <C-\> :CtrlPBuffer<CR>
-nmap <C-m> :CtrlPMRU<CR>
+ " don't use ctrl-m as this map to <CR> in terminal
+nmap <C-o> :CtrlPMRU<CR>
 
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
 let g:ctrlp_switch_buffer = 0
@@ -392,20 +395,33 @@ nnoremap <leader>k :YcmCompleter GetDoc<CR>
 " python-syntax {{{
 let g:python_highlight_all = 1
 " }}}
+" ALE (linting) {{{
+let g:ale_linters = {'python': ['pylint', 'autopep8']}
+let g:ale_python_pylint_options = '--max-line-length=160'
+" Ale in airline
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '✗'
+
+map cn <esc>:ALENextWrap<cr>
+map cp <esc>:ALEPreviousWrap<cr>
+nnoremap <F6> :ALELint<CR>:lopen<CR>
+" }}}
 " syntastic (mainly for python) {{{
 " Settings from https://github.com/vim-syntastic/syntastic/#settings
-let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-" Other settings:
-let g:syntastic_python_checkers = ['pylint', 'flake8'] " use both pylint and flake8
-let g:syntastic_python_pylint_post_args = "--max-line-length=160"
-let g:syntastic_python_flake8_args = "--max-line-length=160"
-let g:syntastic_warning_symbol="⚠"
-let g:syntastic_error_symbol="✗"
+" let g:syntastic_always_populate_loc_list = 1
+" "let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 1
+" " Other settings:
+" let g:syntastic_python_checkers = ['pylint', 'flake8'] " use both pylint and flake8
+" let g:syntastic_python_pylint_post_args = "--max-line-length=160"
+" let g:syntastic_python_flake8_args = "--max-line-length=160"
+" let g:syntastic_warning_symbol="⚠"
+" let g:syntastic_error_symbol="✗"
 
-nnoremap <F6> :SyntasticCheck<CR>:lopen<CR>
+" nnoremap <F6> :SyntasticCheck<CR>:lopen<CR>
 " let g:syntastic_python_python_exec = '/usr/bin/python3'
 " Disable all style warnings
 " let g:syntastic_quiet_messages = {"type": "style"}
