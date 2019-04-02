@@ -220,8 +220,15 @@ set ttyfast	" faster redraw
 set history=700
 set undolevels=700
 " Mouse and backspace
-set mouse=a	" enable mouse (on OSX press ALT and click)
+set mouse+=a	" enable mouse (on OSX press ALT and click)
+" https://superuser.com/a/1017587/219425
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 set backspace=2	" make backspace behave like normal again
+
 " Custom C function colors
 "hi cCustomFunc  gui=bold guifg=yellowgreen
 "hi cCustomClass gui=reverse guifg=#00FF00
