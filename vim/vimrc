@@ -396,13 +396,24 @@ nnoremap <leader>k :YcmCompleter GetDoc<CR>
 let g:python_highlight_all = 1
 " }}}
 " ALE (linting) {{{
-let g:ale_linters = {'python': ['pylint', 'autopep8']}
-let g:ale_python_pylint_options = '--max-line-length=160'
+let g:ale_linters = {'python': ['pylint', 'flake8']}
+
+" Use external pylint rcfile:
+let g:ale_python_pylint_options = '--rcfile=~/GIT/dotfiles/pylintrc'
+let g:ale_python_flake8_options = "--max-line-length=160"
+" Turn flake8 errors into warnings:
+let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
+
 " Ale in airline
 let g:airline#extensions#ale#enabled = 1
 
 let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = '✗'
+
+" Change message format to distinguish between linters:
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 map cn <esc>:ALENextWrap<cr>
 map cp <esc>:ALEPreviousWrap<cr>
