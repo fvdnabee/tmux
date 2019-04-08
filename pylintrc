@@ -14,3 +14,8 @@ variable-rgx=^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$
 # Regular expression matching correct argument names. Overrides argument-
 # naming-style.
 argument-rgx=^[a-z][a-z0-9]*((_[a-z0-9]+)*)
+
+
+[TYPECHECK]
+# ignore no-name-in-module errors in pylint for matplotlib qt bindings:
+ignored-modules=matplotlib.backends.qt_compat,matplotlib.backends.backend_qt5agg
