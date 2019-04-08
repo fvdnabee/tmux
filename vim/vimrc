@@ -77,7 +77,7 @@ let g:gruvbox_guisp_fallback = "bg" " Fix highlighting for SpellBad, see https:/
 colorscheme gruvbox
 
 " Font for gvim:
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+set guifont=DejaVu\ Sans\ Mono\ Book\ 10
 
 " }}}
 " UI Layout {{{
@@ -289,7 +289,7 @@ if executable('ag')
 
 	" Specify the ack.vim plugin to use ag
 	" The benefit of combining Ag with Ack is that Ack's Quickfix window has useful short cuts
-	let g:ackprg = 'ag --nogroup --nocolor --column'
+	let g:ackprg = 'ag --nogroup --nocolor --column --ignore tags'
 endif
 
 " bind K to Ack word under cursor
