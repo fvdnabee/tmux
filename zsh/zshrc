@@ -130,7 +130,7 @@ plugins=(
 alias grep='grep --color=auto'
 alias fgrep='fgrep --ignore-case -I -n --color=auto'
 alias egrep='egrep --color=auto'
-alias tmux='TERM=screen-256color tmux'
+alias tmux='TERM=xterm-256color tmux'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
