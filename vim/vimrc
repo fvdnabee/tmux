@@ -10,7 +10,7 @@ Plug 'Valloric/YouCompleteMe'
 " You should install flake8 or pylint for syntastic
 " Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
@@ -25,10 +25,12 @@ Plug 'vim-airline/vim-airline'
 " Plug 'majutsushi/tagbar'
 " git integration in vim:
 Plug 'tpope/vim-fugitive'
+" Easy jumping between buffers:
+Plug 'tpope/vim-unimpaired'
 " better JSON syntax highlighting:
 Plug 'elzr/vim-json'
 " save vim sessions:
-Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-obsession'
 Plug 'vim-python/python-syntax'
 Plug 'tell-k/vim-autopep8'
 
