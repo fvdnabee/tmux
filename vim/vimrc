@@ -355,8 +355,8 @@ augroup configgroup
 	autocmd FileType matlab setlocal shiftwidth=4
 
 	autocmd BufEnter *.click set filetype=click
-	autocmd BufEnter *.conf set filetype=click
-	autocmd BufEnter *.cfg set filetype=click
+	" autocmd BufEnter *.conf set filetype=click
+	" autocmd BufEnter *.cfg set filetype=click
 
 	autocmd BufEnter Makefile setlocal noexpandtab
 
