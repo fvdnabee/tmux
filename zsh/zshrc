@@ -95,7 +95,7 @@ plugins=(
   cp
   virtualenv
   common-aliases
-  # vi-mode
+  vi-mode
 )
 
 # User configuration
