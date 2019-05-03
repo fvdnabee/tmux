@@ -77,7 +77,7 @@ let g:gruvbox_guisp_fallback = "bg" " Fix highlighting for SpellBad, see https:/
 colorscheme gruvbox
 
 " Font for gvim:
-set guifont=DejaVu\ Sans\ Mono\ Book\ 10
+set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ Book\ 10
 
 " }}}
 " UI Layout {{{
@@ -408,7 +408,7 @@ let g:python_highlight_all = 1
 let g:ale_linters = {'python': ['pylint', 'flake8']}
 
 " Use external pylint rcfile:
-let g:ale_python_pylint_options = '--rcfile=~/GIT/dotfiles/pylintrc'
+" let g:ale_python_pylint_options = '--rcfile=~/GIT/dotfiles/pylintrc'
 let g:ale_python_flake8_options = "--max-line-length=160"
 " Turn flake8 errors into warnings:
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
