@@ -33,6 +33,8 @@ Plug 'elzr/vim-json'
 " Plug 'tpope/vim-obsession'
 Plug 'vim-python/python-syntax'
 Plug 'tell-k/vim-autopep8'
+" show git diff in the vim gutter:
+Plug 'airblade/vim-gitgutter'
 
 " themes:
 " wombat256mod colour scheme for vim:
@@ -282,6 +284,7 @@ if executable('ag')
 	      \ --ignore "**/*.pyc"
 	      \ --ignore env
 	      \ --ignore venv
+	      \ --ignore notebooks
 	      \ -g ""'
 
 	" ag is fast enough that CtrlP doesn't need to cache
