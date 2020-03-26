@@ -1,9 +1,9 @@
 [user]
-	email = florisvda@gmail.com
+	email = floris@vdna.be
 	name = Floris Van den Abeele
 	signingkey = 82918C1B6B97D2CCB3296FA3591E5C96546192AB
 [core]
-	editor = vim
+	editor = vim -X
 	excludesfile = /home/fvdnabee/.gitignore
 [color]
 	ui = auto
@@ -18,3 +18,8 @@
 	com = commit
 	br = branch
 	co = checkout
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
