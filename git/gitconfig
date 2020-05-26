@@ -1,7 +1,7 @@
 [user]
 	email = floris@vdna.be
 	name = Floris Van den Abeele
-	signingkey = 82918C1B6B97D2CCB3296FA3591E5C96546192AB
+	signingkey = ABA46D94E600D80423B44AB253DD273E713AD699
 [core]
 	editor = vim -X
 	excludesfile = /home/fvdnabee/.gitignore
@@ -23,3 +23,5 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[commit]
+	gpgSign = true
