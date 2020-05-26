@@ -30,13 +30,7 @@ ZSH=/usr/share/oh-my-zsh
 #
 # AUR: https://aur.archlinux.org/packages/bullet-train-oh-my-zsh-theme-git/
 # ZSH_THEME="bullet-train"
-#
-# https://github.com/bhilburn/powerlevel9k
-# sudo pacman -S zsh-theme-powerlevel9k
-# with https://github.com/ryanoasis/nerd-fonts
-POWERLEVEL9K_MODE='nerdfont-complete'
-source /usr/share/zsh-theme-powerlevel10k/powerlevel9k.zsh-theme
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history load virtualenv)
+# Using powerlevel10k, see end of zshrc
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -159,3 +153,9 @@ setopt nosharehistory
 # bindkey "\033[1~" beginning-of-line
 # bindkey "\033[4~" end-of-line
 # bindkey "\033[3~" delete-char
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# https://github.com/romkatv/powerlevel10k.git
+# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /usr/share/powerlevel10k
+source /usr/share/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
