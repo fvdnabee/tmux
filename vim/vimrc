@@ -176,6 +176,9 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Rebind tag next
 map <Leader>b <esc>:tn<CR>
 map <Leader>v <esc>:tp<CR>
+
+" Open buffers vertically as opposed to horizontally in diff mode:
+set diffopt+=vertical
 " }}}
 " Quick save/quit {{{
 " Quicksave command
