@@ -26,3 +26,5 @@
 	prompt = false
 [commit]
 	gpgSign = true
+[pull]
+	ff = only
