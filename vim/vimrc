@@ -479,12 +479,14 @@ imap <C-v> <C-r><C-o>+
 set laststatus=2
 " automatically populate the g:airline_symbols dictionary with the proper font glyphs for various symbols
 let g:airline_powerline_fonts = 1
-" Automatically displays all buffers when there's only one tab open.
-let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
+" Automatically displays all buffers when there's only one tab open.
+let g:airline#extensions#tabline#enabled = 1
+" Show buffer numbers in tab list, from https://medium.com/@praveendhawan/vim-airline-powerful-status-line-4dda605adae5
+let g:airline#extensions#tabline#buffer_nr_show = 1
 " }}}
 " Automatically set screen title
 " http://vim.wikia.com/wiki/Automatically_set_screen_title
