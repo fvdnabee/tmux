@@ -159,8 +159,8 @@ map <Leader>%  :vsplit<cr>
 map <Leader>"  :split<cr>
 
 " Easier navigation between buffers:
-map <Leader>p :bn<cr>
-map <Leader>o :bp<cr>
+" map <Leader>p :bn<cr>  " use tpope/vim-unimpiared
+" map <Leader>o :bp<cr>  " use tpope/vim-unimpiared
 " map <Leader>d :bd<cr>
 map <Leader>d :bp\|bd #<cr> " Keep window open, only close buffer
 map <Leader>w :close<cr>
