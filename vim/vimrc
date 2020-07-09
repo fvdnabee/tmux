@@ -298,8 +298,8 @@ if executable('ag')
 	let g:ackprg = 'ag --nogroup --nocolor --column --ignore tags'
 endif
 
-" bind K to Ack word under cursor
-nnoremap K :Ack!<CR>
+" bind <Leader>K to Ack word under cursor
+nnoremap <Leader>K :Ack!<CR>
 " nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " }}}
 " NERDTree {{{
