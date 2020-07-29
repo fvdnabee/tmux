@@ -8,8 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Valloric/YouCompleteMe'
 " You should install flake8 or pylint for syntastic
-" Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Plug 'fatih/vim-go'
 Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
@@ -437,24 +436,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 map cn <esc>:ALENextWrap<cr>
 map cp <esc>:ALEPreviousWrap<cr>
 nnoremap <F6> :ALELint<CR>:lopen<CR>
-" }}}
-" syntastic (mainly for python) {{{
-" Settings from https://github.com/vim-syntastic/syntastic/#settings
-" let g:syntastic_always_populate_loc_list = 1
-" "let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 1
-" " Other settings:
-" let g:syntastic_python_checkers = ['pylint', 'flake8'] " use both pylint and flake8
-" let g:syntastic_python_pylint_post_args = "--max-line-length=160"
-" let g:syntastic_python_flake8_args = "--max-line-length=160"
-" let g:syntastic_warning_symbol="⚠"
-" let g:syntastic_error_symbol="✗"
-
-" nnoremap <F6> :SyntasticCheck<CR>:lopen<CR>
-" let g:syntastic_python_python_exec = '/usr/bin/python3'
-" Disable all style warnings
-" let g:syntastic_quiet_messages = {"type": "style"}
 " }}}
 " vim-go {{{
 let g:go_doc_keywordprg_enabled = 0 " don't overwrite the mapping for the K key
