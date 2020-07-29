@@ -27,4 +27,5 @@
 [commit]
 	gpgSign = true
 [pull]
+	# https://blog.sffc.xyz/post/185195398930/why-you-should-use-git-pull-ff-only
 	ff = only
