@@ -15,10 +15,14 @@ vim
 :PlugInstall
 ```
 
-Compile YCM (without C semantic support):
+coc.nvim on arch requires nodejs. coc extensions require npm.
 ```
-cd ~/.vim/plugged/YouCompleteMe/
-python3 install.py
+pacman -S nodejs npm
+```
+
+Install coc language extensions:
+```
+:CocInstall coc-python coc-json coc-yaml
 ```
 
 ## tmux
