@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " You should install flake8 or pylint for syntastic
 Plug 'dense-analysis/ale'
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
@@ -456,6 +456,8 @@ augroup configgroup
 
 	" add yaml stuffs
 	autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+
+	autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
 augroup END
 " }}}
 " Misc plugins {{{
