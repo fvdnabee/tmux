@@ -45,6 +45,8 @@ Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Gruvbox
 Plug 'morhetz/gruvbox'
+" Terraform in vim
+Plug 'hashivim/vim-terraform'
 
 " Initialize plugin system
 call plug#end()
