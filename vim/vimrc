@@ -6,10 +6,11 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-Plug 'Valloric/YouCompleteMe'
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " You should install flake8 or pylint for syntastic
 Plug 'dense-analysis/ale'
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
@@ -44,6 +45,8 @@ Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Gruvbox
 Plug 'morhetz/gruvbox'
+" Terraform in vim
+Plug 'hashivim/vim-terraform'
 
 " Initialize plugin system
 call plug#end()
@@ -256,6 +259,88 @@ set clipboard=unnamed
 "set tags=./tags,./TAGS;$HOME " 1. tags, 2. TAGS, 3.… until $HOME
 set tags=tags;/
 " }}}
+" coc.nvim {{{
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" " Use `[g` and `]g` to navigate diagnostics
+" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+" Following two don't work for coc-python:
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+" }}}
 " CtrlP {{{
 nmap <C-\> :CtrlPBuffer<CR>
  " <C-_> is ctrl forward slash
@@ -371,6 +456,8 @@ augroup configgroup
 
 	" add yaml stuffs
 	autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+
+	autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
 augroup END
 " }}}
 " Misc plugins {{{
@@ -392,24 +479,6 @@ let g:EasyGrepRecursive=1
 let g:EasyGrepIgnoreCase=1
 let g:EasyGrepJumpToMatch=0
 " }}}
-" YouCompleteMe {{{
-" let g:ycm_extra_conf_globlist = ['~/GIT/COAPClientGateway/*','!~/*']
-" let g:ycm_log_level = 'debug'
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_python_interpreter_path = '.env/bin/python3'
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \]
-let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
-" nnoremap <F6> :YcmForceCompileAndDiagnostics<CR>
-nnoremap <F7> :YcmDiags<CR>
-nnoremap <leader>g :YcmCompleter GoTo<CR>
-nnoremap <leader>h :YcmCompleter GoToReferences<CR>
-nnoremap <leader>j :YcmCompleter GetType<CR>
-nnoremap <leader>k :YcmCompleter GetDoc<CR>
-
-" }}}
 " python-syntax {{{
 let g:python_highlight_all = 1
 " }}}
@@ -418,7 +487,7 @@ let g:ale_linters = {'python': ['pylint', 'flake8']}
 
 " Use external pylint rcfile:
 " let g:ale_python_pylint_options = '--rcfile=~/GIT/dotfiles/pylintrc'
-let g:ale_python_flake8_options = "--max-line-length=160"
+let g:ale_python_flake8_options = "--max-line-length=160 --ignore=E226,E228,E302"
 " Turn flake8 errors into warnings:
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 
