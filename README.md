@@ -49,8 +49,29 @@ Install powerlevel-10k theme. See:
 ```
 yay -Sy --noconfirm zsh-theme-powerlevel10k-git
 ```
+
+Configure powerlevel10k:
+```
+ln -s ~/GIT/dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+```
 #### Optionally install a font
 E.g.
 * https://github.com/Powerlevel9k/powerlevel9k/wiki/Install-Instructions
 * https://github.com/ryanoasis/nerd-fonts
 * https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+
+The Meslo Nerd font can be installed from the aur:
+```
+yay -S ttf-meslo-nerd-font-powerlevel10k
+```
+
+Don't forget to set the new font in the settings of your terminal emulator.
+
+## git: user gitignore and gitconfig
+```
+ln -s ~/GIT/dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/GIT/dotfiles/git/gitignore ~/.gitignore
+```
+
+Don't forget to set the correct user email and PGP signing key for the new
+machine in `~/.gitconfig`.
