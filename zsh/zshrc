@@ -102,6 +102,7 @@ plugins=(
   vi-mode
   aws
   kubectl
+  poetry  # Must save output of `poetry completions zsh` to $ZSH_CUSTOM/plugins/poetry/_poetry, see https://python-poetry.org/docs/#enable-tab-completion-for-bash-fish-or-zsh
 )
 
 # User configuration
