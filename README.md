@@ -22,7 +22,7 @@ pacman -S nodejs npm
 
 Install coc language extensions:
 ```
-:CocInstall coc-python coc-json coc-yaml
+:CocInstall coc-pyright coc-json coc-yaml
 ```
 
 ## tmux
