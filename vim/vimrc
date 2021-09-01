@@ -48,6 +48,11 @@ Plug 'morhetz/gruvbox'
 " Terraform in vim
 Plug 'hashivim/vim-terraform'
 
+" Javascript:
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+
 " Initialize plugin system
 call plug#end()
 " }}}
@@ -260,6 +265,14 @@ set clipboard=unnamed
 set tags=tags;/
 " }}}
 " coc.nvim {{{
+let g:coc_global_extensions = [
+\ 'coc-pyright',
+\ 'coc-json',
+\ 'coc-yaml',
+\ 'coc-tsserver',
+\ 'coc-html',
+\ 'coc-css',
+\ ]
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.

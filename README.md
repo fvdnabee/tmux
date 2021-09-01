@@ -20,9 +20,22 @@ coc.nvim on arch requires nodejs. coc extensions require npm.
 pacman -S nodejs npm
 ```
 
-Install coc language extensions:
+### Install coc language extensions:
+When not using `let g:coc_global_extensions`, you can install the extensions
+manually:
+### python
 ```
-:CocInstall coc-pyright coc-json coc-yaml
+:CocInstall coc-pyright
+```
+
+### File formats
+```
+:CocInstall coc-json coc-yaml
+```
+
+### javascript & typescript
+```
+:CocInstall coc-tsserver
 ```
 
 ## tmux
