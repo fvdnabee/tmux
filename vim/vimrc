@@ -16,6 +16,8 @@ Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " vim airline, note that you will need a patched powerline font for this, see
 " http://vi.stackexchange.com/a/3363
 Plug 'vim-airline/vim-airline'
