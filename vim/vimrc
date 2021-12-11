@@ -378,6 +378,8 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 " note ctrlp_custom_ignore does not work if you use a custom user command (like
 " ag), see ctrlp_user_command in next section on how to ignore files with ah
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|venv|env)|(\.(swp|ico|git|svn|pyc|egg))$'
+" additional root markers for ctrlp:
+let g:ctrlp_root_markers = ['.ctrlp']
 " }}}
 " The Silver Searcher (ag) {{{
 " Urge Vim to use ag for :grep commands
