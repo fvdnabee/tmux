@@ -452,12 +452,13 @@ augroup configgroup
 
 	autocmd FileType html setlocal foldmethod=marker
 	autocmd FileType html setlocal foldmarker={,}
-	autocmd Filetype html setlocal tabstop=4
+	autocmd Filetype html setlocal shiftwidth=4 tabstop=4 softtabstop=0 expandtab
 	autocmd FileType css setlocal foldmethod=syntax
 	autocmd Filetype css setlocal tabstop=4
-	autocmd FileType javascript setlocal foldmethod=marker
-	autocmd FileType javascript setlocal foldmarker={,}
-	autocmd Filetype javascript setlocal shiftwidth=4 tabstop=4 softtabstop=0
+	autocmd Filetype css setlocal shiftwidth=4 tabstop=4 softtabstop=0 expandtab
+	autocmd FileType javascript,typescript,typescriptreact setlocal foldmethod=marker
+	autocmd FileType javascript,typescript,typescriptreact setlocal foldmarker={,}
+	autocmd Filetype javascript,typescript,typescriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 	autocmd FileType ruby setlocal tabstop=2
 	autocmd FileType ruby setlocal shiftwidth=2
