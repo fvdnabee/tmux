@@ -12,7 +12,7 @@ fi
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt appendhistory autocd beep extendedglob nomatch
+setopt appendhistory share_history autocd beep extendedglob nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -180,3 +180,9 @@ export GOROOT=/usr/lib/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+
+# Enable GPG passphrase prompts from zsh
+# See https://stackoverflow.com/a/55126554
+# See also https://unix.stackexchange.com/a/608921 for how Powerlevel10k
+# interference
+export GPG_TTY=$TTY
