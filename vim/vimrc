@@ -16,8 +16,6 @@ Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'dkprice/vim-easygrep'
 " vim airline, note that you will need a patched powerline font for this, see
 " http://vi.stackexchange.com/a/3363
 Plug 'vim-airline/vim-airline'
@@ -491,13 +489,6 @@ let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,
 
 " Tagbar
 nmap <F4> :TagbarToggle<CR>
-" }}}
-" Easygrep {{{
-let g:EasyGrepCommand=1
-let g:EasyGrepMode=2
-let g:EasyGrepRecursive=1
-let g:EasyGrepIgnoreCase=1
-let g:EasyGrepJumpToMatch=0
 " }}}
 " python-syntax {{{
 let g:python_highlight_all = 1
