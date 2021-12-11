@@ -399,6 +399,7 @@ if executable('ag')
 	      \ --ignore env
 	      \ --ignore venv
 	      \ --ignore notebooks
+	      \ --ignore node_modules
 	      \ -g ""'
 
 	" ag is fast enough that CtrlP doesn't need to cache
