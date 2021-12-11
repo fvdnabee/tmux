@@ -426,7 +426,11 @@ nnoremap <Leader>K :Ack!<CR>
 " Toggle NERDTree accross all tabs:
 nmap <F3> :NERDTreeTabsToggle<CR>
 " autocmd VimEnter * NERDTreeTabsToggle
-" }}}
+nmap <Leader>n :NERDTreeFind<CR>
+
+" Ignore __pycache__ folders
+let NERDTreeIgnore=["__pycache__"]
+"" }}}
 " AutoGroups {{{
 augroup configgroup
 	autocmd!
