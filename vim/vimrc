@@ -513,7 +513,7 @@ let g:ale_linters = {'python': ['pylint', 'flake8']}
 
 " Use external pylint rcfile:
 " let g:ale_python_pylint_options = '--rcfile=~/GIT/dotfiles/pylintrc'
-let g:ale_python_flake8_options = "--max-line-length=160 --ignore=E226,E228,E302"
+let g:ale_python_flake8_options = "--max-line-length=88"
 " Turn flake8 errors into warnings:
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 
