@@ -53,8 +53,8 @@ Plug 'morhetz/gruvbox'
 Plug 'hashivim/vim-terraform'
 
 " Javascript:
-Plug 'pangloss/vim-javascript'    " JavaScript support
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
+" Plug 'pangloss/vim-javascript'    " JavaScript support
+" Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 
 " Initialize plugin system
@@ -274,6 +274,7 @@ let g:coc_global_extensions = [
 \ 'coc-json',
 \ 'coc-yaml',
 \ 'coc-tsserver',
+\ 'coc-eslint',
 \ 'coc-html',
 \ 'coc-css',
 \ ]
