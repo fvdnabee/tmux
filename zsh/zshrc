@@ -120,6 +120,9 @@ plugins=(
   # export EDITOR='mvim'
 # fi
 
+# Open visual mode in vim fullscreen
+bindkey -M vicmd v edit-command-line
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -186,3 +189,12 @@ export PATH=$PATH:$GOROOT/bin
 # See also https://unix.stackexchange.com/a/608921 for how Powerlevel10k
 # interference
 export GPG_TTY=$TTY
+
+# Switch from default find command to silver search in fzf in order to respect
+# .gitignore, see https://github.com/junegunn/fzf#respecting-gitignore
+# Note: this also affects fzf in vim
+export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
+
+# Add `--no-use` to bring down exec time from 250ms to ~70ms
+# https://github.com/nvm-sh/nvm/issues/782#issuecomment-588373363
+source /usr/share/nvm/init-nvm.sh --no-use
