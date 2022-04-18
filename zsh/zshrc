@@ -198,3 +198,6 @@ export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
 # Add `--no-use` to bring down exec time from 250ms to ~70ms
 # https://github.com/nvm-sh/nvm/issues/782#issuecomment-588373363
 source /usr/share/nvm/init-nvm.sh --no-use
+
+# expose python scripts of user-local python install:
+export PATH=/home/fvdnabee/.local/bin:$PATH
