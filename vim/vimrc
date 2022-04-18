@@ -15,7 +15,11 @@ Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'scrooloose/nerdtree'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-hijack.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " vim airline, note that you will need a patched powerline font for this, see
@@ -424,13 +428,60 @@ nnoremap <Leader>K :Ack!<CR>
 " let g:NERDTreeWinPos = "right"
 
 " Toggle NERDTree accross all tabs:
-nmap <F3> :NERDTreeTabsToggle<CR>
+" nmap <F3> :NERDTreeTabsToggle<CR>
+" nmap <F3> :NERDTreeToggle<CR>
 " autocmd VimEnter * NERDTreeTabsToggle
-nmap <Leader>n :NERDTreeFind<CR>
+" nmap <Leader>n :NERDTreeFind<CR>
 
 " Ignore __pycache__ folders
-let NERDTreeIgnore=["__pycache__"]
+" let NERDTreeIgnore=["__pycache__"]
 "" }}}
+" fern.vim {{{
+" Custom settings and mappings.
+let g:fern#disable_default_mappings = 1
+
+" Exclude __pycache__
+let g:fern#default_exclude = '__pycache__'
+
+noremap <silent> <F3> :Fern . -drawer -toggle -stay -width=35<CR><C-w>=
+
+noremap <silent> <Leader>n :Fern . -drawer -reveal=% -width=35<CR><C-w>=
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> h <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  " nmap <buffer> k <Plug>(fern-action-mark:toggle)
+  nmap <buffer> b <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+endfunction
+
+augroup FernGroup
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
+
+" https://github.com/lambdalisue/fern-renderer-nerdfont.vim
+let g:fern#renderer = "nerdfont"
+
+" https://github.com/lambdalisue/fern-git-status.vim
+" Disable listing ignored files/directories
+let g:fern_git_status#disable_ignored = 0
+" }}}
 " AutoGroups {{{
 augroup configgroup
 	autocmd!
