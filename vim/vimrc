@@ -57,6 +57,11 @@ Plug 'hashivim/vim-terraform'
 " Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 
+" Debugging:
+" vimspector_enable_mappings must be set before loading vimspector:
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+Plug 'puremourning/vimspector'
+
 " Initialize plugin system
 call plug#end()
 " }}}
@@ -173,10 +178,12 @@ map <Leader>"  :split<cr>
 " map <Leader>p :bn<cr>  " use tpope/vim-unimpiared
 " map <Leader>o :bp<cr>  " use tpope/vim-unimpiared
 " map <Leader>d :bd<cr>
-map <Leader>d :bp\|bd #<cr> " Keep window open, only close buffer
+" Just use :bd<cr>
+" map <Leader>d :bp\|bd #<cr> " Keep window open, only close buffer
+command! Bd bp|bd #
 map <Leader>w :close<cr>
 
-nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <F4> :buffers<CR>:buffer<Space>
 
 " open new tab with <Leader>T
 map <Leader>T <esc>:tabnew<CR>
@@ -555,7 +562,7 @@ augroup END
 let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../../include,sfr:./include'
 
 " Tagbar
-nmap <F4> :TagbarToggle<CR>
+" nmap <F4> :TagbarToggle<CR>
 " }}}
 " python-syntax {{{
 let g:python_highlight_all = 1
@@ -620,6 +627,17 @@ let g:airline#extensions#tabline#enabled = 1
 " Show buffer numbers in tab list, from https://medium.com/@praveendhawan/vim-airline-powerful-status-line-4dda605adae5
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " }}}
+" vimspector {{{
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+" mappings for up/down the stack:
+nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+" }}}
+
 " Automatically set screen title
 " http://vim.wikia.com/wiki/Automatically_set_screen_title
 " let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
@@ -631,4 +649,5 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 "   set title
 " endif
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
+
 " vim:foldmethod=marker:foldlevel=0
