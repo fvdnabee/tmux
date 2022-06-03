@@ -99,7 +99,7 @@ let g:gruvbox_guisp_fallback = "bg" " Fix highlighting for SpellBad, see https:/
 colorscheme gruvbox
 
 " Font for gvim:
-set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ Book\ 10
+set guifont=MesloLGS\ NF\ 10
 
 " }}}
 " UI Layout {{{

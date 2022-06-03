@@ -37,7 +37,8 @@ compinit
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh
+# ZSH=/usr/share/oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -172,7 +173,7 @@ bindkey '^S' history-incremental-pattern-search-forward
 
 # Keep track of directory in new tab
 # https://unix.stackexchange.com/questions/93476/gnome-terminal-keep-track-of-directory-in-new-tab
-. /etc/profile.d/vte.sh
+. /etc/profile.d/vte-2.91.sh
 
 # disable sharing history between zshs:
 setopt nosharehistory
@@ -184,7 +185,8 @@ setopt nosharehistory
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # https://github.com/romkatv/powerlevel10k.git
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /home/fvdnabee/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Terraform autocomplete:
@@ -212,7 +214,7 @@ export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
 
 # Add `--no-use` to bring down exec time from 250ms to ~70ms
 # https://github.com/nvm-sh/nvm/issues/782#issuecomment-588373363
-source /usr/share/nvm/init-nvm.sh --no-use
+# source /usr/share/nvm/init-nvm.sh --no-use
 
 # expose python scripts of user-local python install:
 export PATH=/home/fvdnabee/.local/bin:$PATH
