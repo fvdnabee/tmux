@@ -80,6 +80,9 @@ yay -S ttf-meslo-nerd-font-powerlevel10k
 
 Don't forget to set the new font in the settings of your terminal emulator.
 
+### direnv
+Install [direnv](https://direnv.net/docs/installation.html) for your distro
+
 ## git: user gitignore and gitconfig
 ```
 ln -s ~/GIT/dotfiles/git/gitconfig ~/.gitconfig
