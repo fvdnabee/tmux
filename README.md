@@ -43,6 +43,11 @@ manually:
 ln -s ~/GIT/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ```
 
+### Install wl-clipboard
+To copy to the system clipboard from tmux under wayland install wl-clipboard:
+* [Arch linux](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
+* [Ubuntu](https://packages.ubuntu.com/wl-clipboard)
+
 ## zsh
 Symlink zshrc:
 ```
