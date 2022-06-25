@@ -278,6 +278,11 @@ set clipboard=unnamed
 " autocmd BufWritePost *.cc,*.hh,*.c,*.h silent! !/usr/bin/ctags -R 2> /dev/null &
 "set tags=./tags,./TAGS;$HOME " 1. tags, 2. TAGS, 3.… until $HOME
 set tags=tags;/
+
+" Store vim swapfiles in a central place
+" Make sure the directory exists, or vim won't use it (it won't create it for you).
+" https://vi.stackexchange.com/a/16047
+set directory^=$HOME/.vim/swap//
 " }}}
 " coc.nvim {{{
 let g:coc_global_extensions = [
