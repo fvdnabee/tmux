@@ -641,6 +641,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
+nmap <Leader>db <Plug>VimspectorBreakpoints
 
 " mappings for up/down the stack:
 nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
