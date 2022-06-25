@@ -29,6 +29,9 @@ Plug 'vim-airline/vim-airline'
 " Plug 'majutsushi/tagbar'
 " git integration in vim:
 Plug 'tpope/vim-fugitive'
+" GitHub extension for fugitive.vim
+" Requires curl and a .netrc file, cfr. https://github.com/tpope/vim-rhubarb
+Plug 'tpope/vim-rhubarb'
 " Easy jumping between buffers:
 Plug 'tpope/vim-unimpaired'
 " better JSON syntax highlighting:
@@ -39,6 +42,7 @@ Plug 'vim-python/python-syntax'
 Plug 'tell-k/vim-autopep8'
 " show git diff in the vim gutter:
 Plug 'airblade/vim-gitgutter'
+Plug 'towolf/vim-helm'
 
 " themes:
 " wombat256mod colour scheme for vim:
