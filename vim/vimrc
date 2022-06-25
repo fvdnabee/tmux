@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " You should install flake8 or pylint for syntastic
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go'
 Plug 'fvdnabee/a.vim'
 Plug 'mileszs/ack.vim'
