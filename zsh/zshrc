@@ -117,6 +117,7 @@ plugins=(
   aws
   kubectl
   poetry  # Must save output of `poetry completions zsh` to $ZSH_CUSTOM/plugins/poetry/_poetry, see https://python-poetry.org/docs/#enable-tab-completion-for-bash-fish-or-zsh
+  yarn-autocompletions  # https://github.com/g-plane/zsh-yarn-autocompletions
 )
 
 # User configuration
