@@ -355,6 +355,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+nmap <leader>F :Format<CR>
 
 augroup mygroup
   autocmd!
@@ -638,6 +639,7 @@ nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
 nmap <Leader>db <Plug>VimspectorBreakpoints
+nmap <Leader>dc :VimspectorReset<CR>
 
 " mappings for up/down the stack:
 nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
