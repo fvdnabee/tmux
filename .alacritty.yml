@@ -117,7 +117,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: MesloLGS NF
+    # https://github.com/romkatv/powerlevel10k/blob/master/font.md
+    # family: MesloLGS NF
+    # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo
+    family: "MesloLGS Nerd Font"
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
