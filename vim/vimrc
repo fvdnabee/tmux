@@ -557,6 +557,7 @@ augroup configgroup
 	autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 
 	autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
+	autocmd FileType bzl setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 augroup END
 " }}}
 " Misc plugins {{{
