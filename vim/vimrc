@@ -646,6 +646,8 @@ nmap <Leader>dc :VimspectorReset<CR>
 " mappings for up/down the stack:
 nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+
+" See ui customization file in ~/.vim/plugin/my_vimspector_ui.vim
 " }}}
 
 " Automatically set screen title
