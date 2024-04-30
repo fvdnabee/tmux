@@ -158,6 +158,7 @@ alias fgrep='fgrep --ignore-case -I -n --color=auto'
 alias egrep='egrep --color=auto'
 alias tmux='TERM=xterm-256color tmux'
 alias gstuno='git status -uno'
+source $HOME/.aliases
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -211,6 +212,10 @@ export GPG_TTY=$TTY
 # .gitignore, see https://github.com/junegunn/fzf#respecting-gitignore
 # Note: this also affects fzf in vim
 export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
+
+# https://unix.stackexchange.com/a/33898
+# Add our own directory to zsh's function search path:
+fpath=( ~/.zfunc "${fpath[@]}" )
 
 # Add `--no-use` to bring down exec time from 250ms to ~70ms
 # https://github.com/nvm-sh/nvm/issues/782#issuecomment-588373363
