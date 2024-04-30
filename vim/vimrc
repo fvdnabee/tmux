@@ -576,13 +576,13 @@ let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,
 let g:python_highlight_all = 1
 " }}}
 " ALE (linting) {{{
-let g:ale_linters = {'python': ['pylint', 'flake8']}
+let g:ale_linters = {'c': ['cpplint']}
 
 " Use external pylint rcfile:
 " let g:ale_python_pylint_options = '--rcfile=~/GIT/dotfiles/pylintrc'
-let g:ale_python_flake8_options = "--max-line-length=88"
+" let g:ale_python_flake8_options = "--max-line-length=88"
 " Turn flake8 errors into warnings:
-let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
+" let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 
 " Ale in airline
 let g:airline#extensions#ale#enabled = 1
