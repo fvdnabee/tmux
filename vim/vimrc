@@ -655,6 +655,10 @@ nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 let g:gitgutter_sign_priority = 8
 " }}}
 
+" Fix :gx not opening urls in gvim:
+" https://vi.stackexchange.com/a/5034
+let g:netrw_browsex_viewer="setsid xdg-open"
+
 " Automatically set screen title
 " http://vim.wikia.com/wiki/Automatically_set_screen_title
 " let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
