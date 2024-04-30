@@ -649,6 +649,11 @@ nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
 " See ui customization file in ~/.vim/plugin/my_vimspector_ui.vim
 " }}}
+" vim-gitgutter {{{
+" Reduce sign priority below that of vimspector (vimspector defaults to priority
+" 9). See https://github.com/puremourning/vimspector#changing-the-default-signs
+let g:gitgutter_sign_priority = 8
+" }}}
 
 " Automatically set screen title
 " http://vim.wikia.com/wiki/Automatically_set_screen_title
