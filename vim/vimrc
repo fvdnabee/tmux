@@ -500,9 +500,9 @@ let g:fern_git_status#disable_ignored = 0
 " AutoGroups {{{
 augroup configgroup
 	autocmd!
-	"autocmd FileType cc setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+	autocmd FileType cc setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 	autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
-	"autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
+	autocmd FileType hh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab shiftround
 	autocmd FileType h setlocal shiftwidth=2 tabstop=2
 
 	autocmd FileType python setlocal foldmethod=indent
