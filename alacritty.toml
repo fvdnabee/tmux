@@ -1,0 +1,22 @@
+
+[cursor.style]
+blinking = "Always"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "DejaVuSansM Nerd Font Mono"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F12"
+
+[scrolling]
+history = 100000
+
+[window]
+decorations = "None"
+
+[general]
+import = ["/home/fvdnabee/GIT/alacritty-theme/themes/gruvbox_dark.toml"]
