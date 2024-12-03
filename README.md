@@ -43,11 +43,6 @@ manually:
 ln -s ~/GIT/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ```
 
-### Install wl-clipboard
-To copy to the system clipboard from tmux under wayland install wl-clipboard:
-* [Arch linux](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
-* [Ubuntu](https://packages.ubuntu.com/wl-clipboard)
-
 ## zsh
 Symlink zshrc:
 ```
@@ -59,13 +54,13 @@ Install oh-my-zsh from aur:
 ```
 yay -S oh-my-zsh-git
 ```
-Change ZSH on L21 in zshrc to point to the oh-my-zsh installation.
+Change ZSH on L40 in zshrc to point to the oh-my-zsh installation.
 
 ### powerlevel-10k theme
 Install powerlevel-10k theme. See:
 * https://github.com/romkatv/powerlevel10k#arch-linux
 ```
-yay -Sy --noconfirm zsh-theme-powerlevel10k-git
+yay -S --noconfirm zsh-theme-powerlevel10k-git
 ```
 
 Configure powerlevel10k:
@@ -88,6 +83,10 @@ Don't forget to set the new font in the settings of your terminal emulator.
 ### direnv
 Install [direnv](https://direnv.net/docs/installation.html) for your distro
 
+```
+pacman -S direnv
+```
+
 ## git: user gitignore and gitconfig
 ```
 ln -s ~/GIT/dotfiles/git/gitconfig ~/.gitconfig
@@ -96,3 +95,8 @@ ln -s ~/GIT/dotfiles/git/gitignore ~/.gitignore
 
 Don't forget to set the correct user email and PGP signing key for the new
 machine in `~/.gitconfig`.
+
+## alacritty
+```
+ln -s ~/GIT/dotfiles/alacritty.toml ~/.alacritty.toml
+```
