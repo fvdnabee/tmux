@@ -99,7 +99,7 @@ let g:gruvbox_guisp_fallback = "bg" " Fix highlighting for SpellBad, see https:/
 colorscheme gruvbox
 
 " Font for gvim:
-set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ Book\ 10
+set guifont=DejaVuSansM\ Nerd\ Font\ Mono\ 12
 
 " }}}
 " UI Layout {{{
@@ -287,6 +287,7 @@ set directory^=$HOME/.vim/swap//
 " coc.nvim {{{
 let g:coc_global_extensions = [
 \ 'coc-pyright',
+\ 'coc-go',
 \ 'coc-json',
 \ 'coc-yaml',
 \ 'coc-tsserver',
@@ -471,6 +472,7 @@ function! FernInit() abort
         \ )
   nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
   nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> c <Plug>(fern-action-copy)
   nmap <buffer> n <Plug>(fern-action-new-path)
   nmap <buffer> d <Plug>(fern-action-remove)
   nmap <buffer> m <Plug>(fern-action-move)
@@ -524,6 +526,7 @@ augroup configgroup
 	autocmd FileType javascript,typescript,typescriptreact setlocal foldmethod=marker
 	autocmd FileType javascript,typescript,typescriptreact setlocal foldmarker={,}
 	autocmd Filetype javascript,typescript,typescriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+	autocmd Filetype php setlocal tabstop=4 shiftwidth=4
 
 	autocmd FileType ruby setlocal tabstop=2
 	autocmd FileType ruby setlocal shiftwidth=2
@@ -556,6 +559,12 @@ augroup configgroup
 	autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 
 	autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
+augroup END
+" Exclude quickfix buffer from :bprevious and :bnext
+" https://stackoverflow.com/a/28617831
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
 augroup END
 " }}}
 " Misc plugins {{{
@@ -642,9 +651,25 @@ nmap <Leader>db <Plug>VimspectorBreakpoints
 nmap <Leader>dc :VimspectorReset<CR>
 
 " mappings for up/down the stack:
-nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
-nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+nmap <LocalLeader><F10> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F11> <Plug>VimspectorDownFrame
+
+" vimspector signs are hidden below fugitive signs that indicate dirty lines in
+" git tracked files.
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':          15,
+  \    'vimspectorBPCond':      15,
+  \    'vimspectorBPLog':       15,
+  \    'vimspectorBPDisabled':  15,
+  \    'vimspectorNonActivePC': 15,
+  \    'vimspectorPC':          999,
+  \    'vimspectorPCBP':        999,
+  \ }
 " }}}
+
+" Fix :gx not opening urls in gvim:
+" https://vi.stackexchange.com/a/5034
+let g:netrw_browsex_viewer="setsid xdg-open"
 
 " Automatically set screen title
 " http://vim.wikia.com/wiki/Automatically_set_screen_title
