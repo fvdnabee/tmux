@@ -46,8 +46,8 @@ ZSH=/usr/share/oh-my-zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # https://github.com/romkatv/powerlevel10k.git
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # ZSH_THEME="robbyrussell"
 # https://github.com/caiogondim/bullet-train.zsh
@@ -103,6 +103,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# https://lakur.tech/2021/12/10/fix-slow-zsh-startup-nvm/
+# export NVM_LAZY=1
+zstyle ':omz:plugins:nvm' lazy yes
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -115,9 +119,10 @@ plugins=(
   common-aliases
   vi-mode
   aws
-  kubectl
+  # kubectl
   poetry  # Must save output of `poetry completions zsh` to $ZSH_CUSTOM/plugins/poetry/_poetry, see https://python-poetry.org/docs/#enable-tab-completion-for-bash-fish-or-zsh
-  yarn-autocompletions  # https://github.com/g-plane/zsh-yarn-autocompletions
+  # yarn-autocompletions  # https://github.com/g-plane/zsh-yarn-autocompletions
+  nvm
 )
 
 # User configuration
