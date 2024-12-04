@@ -42,6 +42,11 @@ manually:
 ```
 ln -s ~/GIT/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ```
+### tmuxinator
+```
+yay -S tmuxinator ruby-erb
+sudo wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/share/zsh/site-functions/_tmuxinator
+```
 
 ## zsh
 Symlink zshrc:
