@@ -5,8 +5,7 @@ blinking = "Always"
 size = 14.0
 
 [font.normal]
-# family = "DejaVuSansM Nerd Font Mono"
-family = "MesloLGS NF"
+family = "DejaVuSansM Nerd Font Mono"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
